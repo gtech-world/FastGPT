@@ -52,7 +52,6 @@ jobs:
         run: |
           docker buildx build \
           --build-arg name=app \
-          --platform linux/amd64,linux/arm64 \
           --label "org.opencontainers.image.source=  https://github.com/  ${{ github.repository_owner }}/FastGPT" \
           --label "org.opencontainers.image.description=aai image" \
           --label "org.opencontainers.image.licenses=Apache" \
