@@ -47,13 +47,16 @@ const defaultSystemEnv: SystemEnvType = {
 };
 const defaultFeConfigs: FeConfigsType = {
   show_emptyChat: true,
-  show_contact: true,
-  show_git: true,
-  show_doc: true,
+  show_contact: false,
+  show_git: false,
+  show_doc: false,
+  show_pay: false,
+  show_openai_account: false,
+  show_register: false,
   docUrl: 'https://docs.fastgpt.run',
   openAPIDocUrl: 'https://doc.fastgpt.run/docs/development/openapi',
-  systemTitle: 'FastGPT',
-  authorText: 'Made by FastGPT Team.',
+  systemTitle: 'AAI',
+  authorText: 'Made by AAI Team.',
   limit: {
     exportLimitMinutes: 0
   },
