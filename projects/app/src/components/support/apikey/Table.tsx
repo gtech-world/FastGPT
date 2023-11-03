@@ -80,7 +80,7 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
         <Box flex={1}>
           <Flex alignItems={'flex-end'}>
             <Box fontSize={['md', 'xl']} fontWeight={'bold'}>
-              API 秘钥管理
+              {t('API 秘钥管理')}
             </Box>
             <Link
               href={feConfigs.openAPIDocUrl || 'https://doc.fastgpt.run/docs/development/openapi'}
@@ -88,7 +88,7 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
               ml={1}
               color={'myBlue.600'}
             >
-              查看文档
+              {t('查看文档')}
             </Link>
           </Flex>
           <Box fontSize={'sm'} color={'myGray.600'}>
@@ -103,10 +103,10 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
           borderRadius={'md'}
           cursor={'pointer'}
           userSelect={'none'}
-          onClick={() => copyData(baseUrl, '已复制 API 地址')}
+          onClick={() => copyData(baseUrl, t('已复制 API 地址'))}
         >
           <Box border={theme.borders.md} px={2} borderRadius={'md'} fontSize={'sm'}>
-            API根地址
+            {t('API根地址')}
           </Box>
           <Box ml={2} color={'myGray.900'} fontSize={['sm', 'md']}>
             {baseUrl}
@@ -124,7 +124,7 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
               })
             }
           >
-            新建
+            {t('Create New')}
           </Button>
         </Box>
       </Box>
@@ -134,16 +134,16 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
             <Tr>
               <Th>{t('Name')}</Th>
               <Th>Api Key</Th>
-              <Th>已用额度(￥)</Th>
+              <Th>{t('已用额度')}(￥)</Th>
               {feConfigs?.isPlus && (
                 <>
-                  <Th>最大额度(￥)</Th>
-                  <Th>过期时间</Th>
+                  <Th>{t('最大额度')}(￥)</Th>
+                  <Th>{t('过期时间')}</Th>
                 </>
               )}
 
-              <Th>创建时间</Th>
-              <Th>最后一次使用时间</Th>
+              <Th>{t('创建时间')}</Th>
+              <Th>{t('最后一次使用时间')}</Th>
               <Th />
             </Tr>
           </Thead>
@@ -155,7 +155,9 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
                 <Td>{usage}</Td>
                 {feConfigs?.isPlus && (
                   <>
-                    <Td>{limit?.credit && limit?.credit > -1 ? `${limit?.credit}` : '无限制'}</Td>
+                    <Td>
+                      {limit?.credit && limit?.credit > -1 ? `${limit?.credit}` : t('无限制')}
+                    </Td>
                     <Td whiteSpace={'pre-wrap'}>
                       {limit?.expiredTime
                         ? dayjs(limit?.expiredTime).format('YYYY/MM/DD\nHH:mm')
@@ -165,7 +167,9 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
                 )}
                 <Td whiteSpace={'pre-wrap'}>{dayjs(createTime).format('YYYY/MM/DD\nHH:mm:ss')}</Td>
                 <Td whiteSpace={'pre-wrap'}>
-                  {lastUsedTime ? dayjs(lastUsedTime).format('YYYY/MM/DD\nHH:mm:ss') : '没有使用过'}
+                  {lastUsedTime
+                    ? dayjs(lastUsedTime).format('YYYY/MM/DD\nHH:mm:ss')
+                    : t('没有使用过')}
                 </Td>
                 <Td>
                   <Menu autoSelect={false} isLazy>
@@ -222,10 +226,10 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
       <MyModal isOpen={!!apiKey} w={['400px', '600px']} onClose={() => setApiKey('')}>
         <Box py={3} px={5}>
           <Box fontWeight={'bold'} fontSize={'2xl'}>
-            新的 API 秘钥
+            {t('新的 API 秘钥')}
           </Box>
           <Box fontSize={'sm'} color={'myGray.600'}>
-            请保管好你的秘钥，秘钥不会再次展示~
+            {t('请保管好你的秘钥，秘钥不会再次展示~')}
           </Box>
         </Box>
         <ModalBody>
@@ -244,7 +248,7 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
         </ModalBody>
         <ModalFooter>
           <Button variant="base" onClick={() => setApiKey('')}>
-            好的
+            {t('好的')}
           </Button>
         </ModalFooter>
       </MyModal>
@@ -279,7 +283,7 @@ function EditKeyModal({
 
   const { mutate: onclickCreate, isLoading: creating } = useRequest({
     mutationFn: async (e: EditProps) => createAOpenApiKey(e),
-    errorToast: '创建链接异常',
+    errorToast: t('创建链接异常'),
     onSuccess: onCreate
   });
   const { mutate: onclickUpdate, isLoading: updating } = useRequest({
@@ -287,7 +291,7 @@ function EditKeyModal({
       //@ts-ignore
       return putOpenApiKey(e);
     },
-    errorToast: '更新链接异常',
+    errorToast: t('更新链接异常'),
     onSuccess: onEdit
   });
 

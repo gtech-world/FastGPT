@@ -25,6 +25,7 @@ import { feConfigs } from '@/web/common/system/staticData';
 import Avatar from '@/components/Avatar';
 import MyTooltip from '@/components/MyTooltip';
 import MyModal from '@/components/MyModal';
+import { useTranslation } from 'react-i18next';
 
 type FormType = {
   avatar: string;
@@ -33,6 +34,7 @@ type FormType = {
 };
 
 const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) => {
+  const { t } = useTranslation();
   const [refresh, setRefresh] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
@@ -97,13 +99,13 @@ const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
 
   return (
     <MyModal isOpen onClose={onClose} isCentered={!isPc}>
-      <ModalHeader fontSize={'2xl'}>创建属于你的 AI 应用</ModalHeader>
+      <ModalHeader fontSize={'2xl'}>{t('创建属于你的 AI 应用')}</ModalHeader>
       <ModalBody>
         <Box color={'myGray.800'} fontWeight={'bold'}>
-          取个响亮的名字
+          {t('取个响亮的名字')}
         </Box>
         <Flex mt={3} alignItems={'center'}>
-          <MyTooltip label={'点击设置头像'}>
+          <MyTooltip label={t('点击设置头像')}>
             <Avatar
               flexShrink={0}
               src={getValues('avatar')}
@@ -120,14 +122,14 @@ const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
             autoFocus
             bg={'myWhite.600'}
             {...register('name', {
-              required: '应用名不能为空~'
+              required: t('应用名不能为空~')
             })}
           />
         </Flex>
         {!feConfigs?.hide_app_flow && (
           <>
             <Box mt={[4, 7]} mb={[0, 3]} color={'myGray.800'} fontWeight={'bold'}>
-              从模板中选择
+              {t('从模板中选择')}
             </Box>
             <Grid
               userSelect={'none'}
@@ -174,10 +176,10 @@ const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          {t('Cancel')}
         </Button>
         <Button isLoading={creating} onClick={handleSubmit((data) => onclickCreate(data))}>
-          确认创建
+          {t('Confirm')}
         </Button>
       </ModalFooter>
 

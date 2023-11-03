@@ -156,7 +156,7 @@ const Kb = () => {
           </Flex>
         ) : (
           <Box flex={1} className="textlg" letterSpacing={1} fontSize={'24px'} fontWeight={'bold'}>
-            我的知识库
+            {t('我的知识库')}
           </Box>
         )}
 
@@ -393,7 +393,7 @@ const Kb = () => {
         <Flex mt={'35vh'} flexDirection={'column'} alignItems={'center'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            还没有知识库，快去创建一个吧！
+            {t('还没有知识库，快去创建一个吧！')}
           </Box>
         </Flex>
       )}

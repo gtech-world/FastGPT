@@ -91,7 +91,7 @@ const MoveModal = ({
               ))}
             </Flex>
           ) : (
-            <Box>我的知识库</Box>
+            <Box>{t('我的知识库')}</Box>
           )}
         </ModalHeader>
 

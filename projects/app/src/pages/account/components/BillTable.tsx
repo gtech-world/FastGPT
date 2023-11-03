@@ -85,7 +85,7 @@ const BillTable = () => {
         <Flex flex={'1 0 0'} flexDirection={'column'} alignItems={'center'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            无使用记录~
+            {t('无使用记录')}
           </Box>
         </Flex>
       )}

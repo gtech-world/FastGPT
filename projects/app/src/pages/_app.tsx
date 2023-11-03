@@ -80,7 +80,7 @@ function App({ Component, pageProps }: AppProps) {
   }, [hiId]);
 
   useEffect(() => {
-    const lang = getLangStore() || 'zh';
+    const lang = getLangStore() || 'en';
     i18n?.changeLanguage?.(lang);
     setLangStore(lang);
 

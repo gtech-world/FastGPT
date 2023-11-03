@@ -17,8 +17,10 @@ import MySelect from '@/components/Select';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
 import { vectorModelList } from '@/web/common/system/staticData';
 import Tag from '@/components/Tag';
+import { useTranslation } from 'react-i18next';
 
 const CreateModal = ({ onClose, parentId }: { onClose: () => void; parentId?: string }) => {
+  const { t } = useTranslation();
   const [refresh, setRefresh] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
@@ -77,13 +79,13 @@ const CreateModal = ({ onClose, parentId }: { onClose: () => void; parentId?: st
 
   return (
     <MyModal isOpen onClose={onClose} isCentered={!isPc} w={'400px'}>
-      <ModalHeader fontSize={'2xl'}>创建一个知识库</ModalHeader>
+      <ModalHeader fontSize={'2xl'}>{t('创建一个知识库')}</ModalHeader>
       <ModalBody>
         <Box color={'myGray.800'} fontWeight={'bold'}>
-          取个名字
+          {t('取个名字')}
         </Box>
         <Flex mt={3} alignItems={'center'}>
-          <MyTooltip label={'点击设置头像'}>
+          <MyTooltip label={t('点击设置头像')}>
             <Avatar
               flexShrink={0}
               src={getValues('avatar')}
@@ -101,12 +103,12 @@ const CreateModal = ({ onClose, parentId }: { onClose: () => void; parentId?: st
             bg={'myWhite.600'}
             maxLength={30}
             {...register('name', {
-              required: '知识库名称不能为空~'
+              required: t('知识库名称不能为空~')
             })}
           />
         </Flex>
         <Flex mt={6} alignItems={'center'}>
-          <Box flex={'0 0 80px'}>索引模型</Box>
+          <Box flex={'0 0 80px'}>{t('索引模型')}</Box>
           <Box flex={1}>
             <MySelect
               w={'100%'}
@@ -124,15 +126,15 @@ const CreateModal = ({ onClose, parentId }: { onClose: () => void; parentId?: st
         </Flex>
         <Flex mt={6} alignItems={'center'} w={'100%'}>
           <Box flex={'0 0 80px'}>
-            标签
-            <MyTooltip label={'用空格隔开多个标签，便于搜索'} forceShow>
+            {t('标签')}
+            <MyTooltip label={t('用空格隔开多个标签，便于搜索')} forceShow>
               <QuestionOutlineIcon ml={1} />
             </MyTooltip>
           </Box>
           <Input
             flex={1}
             ref={InputRef}
-            placeholder={'标签,使用空格分割。'}
+            placeholder={t('标签,使用空格分割。')}
             maxLength={30}
             onChange={(e) => {
               setValue('tags', e.target.value.split(' '));
@@ -153,10 +155,10 @@ const CreateModal = ({ onClose, parentId }: { onClose: () => void; parentId?: st
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          {t('Cancel')}
         </Button>
         <Button isLoading={creating} onClick={handleSubmit((data) => onclickCreate(data))}>
-          确认创建
+          {t('Confirm')}
         </Button>
       </ModalFooter>
 

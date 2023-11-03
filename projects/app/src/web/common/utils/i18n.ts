@@ -22,7 +22,7 @@ export const setLangStore = (value: `${LangEnum}`) => {
 };
 
 export const getLangStore = () => {
-  return (Cookies.get(LANG_KEY) as `${LangEnum}`) || LangEnum.zh;
+  return (Cookies.get(LANG_KEY) as `${LangEnum}`) || LangEnum.en;
 };
 
 export const serviceSideProps = (content: any) => {
@@ -31,7 +31,7 @@ export const serviceSideProps = (content: any) => {
   // @ts-ignore
   const firstLang = acceptLanguageList.find((lang) => langMap[lang]);
 
-  const language = content.req.cookies[LANG_KEY] || firstLang || 'zh';
+  const language = content.req.cookies[LANG_KEY] || firstLang || 'en';
 
   return serverSideTranslations(language, undefined, null, content.locales);
 };
